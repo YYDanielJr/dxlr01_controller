@@ -1,3 +1,11 @@
+/*
+ * @Author: Y.Y. Daniel 626986815@qq.com
+ * @Date: 2024-07-17 16:47:52
+ * @LastEditors: Y.Y. Daniel 626986815@qq.com
+ * @LastEditTime: 2024-07-18 10:43:35
+ * @FilePath: /dxlr01_controller/linuxSerial/serial.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 #ifndef _SERIAL_H_
 #define _SERIAL_H_
 
