@@ -2,7 +2,7 @@
  * @Author: Y.Y. Daniel 626986815@qq.com
  * @Date: 2024-07-17 16:50:36
  * @LastEditors: Y.Y. Daniel 626986815@qq.com
- * @LastEditTime: 2024-07-18 16:27:12
+ * @LastEditTime: 2024-07-20 15:09:18
  * @FilePath: /dxlr01_controller/src/dxlr01.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,15 +35,7 @@ bool DX_LR01::serialTest() {
  * @retval -1 无法打开串口
  * @retval -2 串口成功打开，但无法进行通信。有可能是串口设置问题，或者没有连接正确的模块。
  */
-DX_LR01::DX_LR01(char *serialPath, int serialSpeed, 
-        int (*openSerialCallback)(char *serialPath, int speed), 
-        int (*closeSerialCallback)(), 
-        int (*readSerialCallback)(char *buffer, uint32_t size), 
-        int (*writeSerialCallback)(char *buffer, uint32_t size)) {
-    openSerial = openSerialCallback;
-    closeSerial = closeSerialCallback;
-    readSerial = readSerialCallback;
-    writeSerial = writeSerialCallback;
+DX_LR01::DX_LR01(char *serialPath, int serialSpeed) {
     if(openSerial(serialPath, serialSpeed) == 0) {
         if(!serialTest()) {
             throw -2;
@@ -67,4 +59,8 @@ DX_LR01::~DX_LR01() {
     if(closeSerial() != 0) {
         throw -2;
     }
+}
+
+bool DX_LR01::isOpen() {
+    return isSerialOpen & serialTest();
 }

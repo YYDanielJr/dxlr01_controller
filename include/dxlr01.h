@@ -35,47 +35,16 @@
 
 class DX_LR01 {
 private:
-    /**
-     * @brief 打开串口的回调函数。请在回调函数内自行设置其他的错误调试信息处理或输出方式。
-     * @param serialPath 串口文件位置，例如/dev/ttyUSB0。
-     * @param speed 串口波特率
-     * @retval 0 串口成功打开
-     * @retval -1 串口无法打开
-     */
-    int (*openSerial)(char* serialPath, int speed);
-    /**
-     * @brief 关闭串口的回调函数。
-     * @retval 0 成功关闭
-     * @retval -1 串口已经被关闭
-     */
-    int (*closeSerial)();
-    /**
-     * @brief 从串口中读取特定数量的字符。
-     * @param buffer 缓冲区，用于存储读取到的字符。
-     * @param size 需要读取的字节数。
-     * @retval >=0 实际读取到的字节数
-     * @retval <0 读取失败
-     */
-    int (*readSerial)(char* buffer, uint32_t size);
-    /**
-     * @brief 向串口中写入特定数量的字符。
-     * @param buffer 待写入的数据。
-     * @param size 需要写入的字节数。
-     * @retval >=0 实际写入的字节数
-     * @retval <0 写入失败
-     */
-    int (*writeSerial)(char* buffer, uint32_t size);
+    int openSerial(char* serialPath, int serialSpeed);
+    int closeSerial();
+    int readSerial(char* buffer, uint32_t size);
+    int writeSerial(char* buffer, uint32_t size);
     bool serialTest();
     uint8_t mode;
     bool isSerialOpen;
     
 public:
-    DX_LR01(char* serialPath, int serialSpeed, 
-            int (*openSerialCallback)(char* serialPath, int speed), 
-            int (*closeSerialCallback)(), 
-            int (*readSerialCallback)(char* buffer, uint32_t size), 
-            int (*writeSerialCallback)(char* buffer, uint32_t size)
-    );
+    DX_LR01(char* serialPath, int serialSpeed);
     ~DX_LR01();
     bool isOpen();
 
